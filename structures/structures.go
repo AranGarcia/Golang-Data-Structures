@@ -4,7 +4,10 @@ Package structures provides implementations of basic data structures.
 */
 package structures
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 // DataStructure is the base type for structures that will need to implement
 // how the data is organized and accesed.
@@ -17,6 +20,7 @@ type DataStructure struct {
 type dataAccesor interface {
 	Pop() float64
 	Peek() float64
+	Sort()
 	PrintInfo()
 }
 
@@ -32,6 +36,10 @@ type Queue struct {
 	DataStructure
 }
 
+/*
+ * DataStructure methods
+ */
+
 // Init pre-allocates the memory used for the data structure
 func (ds *DataStructure) Init(capacity uint) {
 	ds.values = make([]float64, 0, capacity)
@@ -43,7 +51,24 @@ func (ds *DataStructure) InitWithValues(values []float64) {
 	copy(ds.values, values)
 }
 
-// PrintValues ...
+// GetSize returns the amount of values appended into the structure.
+func (ds *DataStructure) GetSize() int {
+	return int(len(ds.values))
+}
+
+// Insert adds a value into the structure.
+func (ds *DataStructure) Insert(value float64) {
+	ds.values = append(ds.values, value)
+}
+
+// PrintInfo displays information about the data structure.
+func (ds *DataStructure) PrintInfo() {
+	fmt.Printf("Length: %v\n", len(ds.values))
+	fmt.Printf("Capacity: %v\n", cap(ds.values))
+	fmt.Printf("Values: %v\n", ds.values)
+}
+
+// PrintValues prints the values in a comma separated list.
 func (ds DataStructure) PrintValues() {
 	var comma string
 	fmt.Print("[")
@@ -58,21 +83,9 @@ func (ds DataStructure) PrintValues() {
 	fmt.Print("]\n")
 }
 
-// PrintInfo displays information about the data structure.
-func (ds *DataStructure) PrintInfo() {
-	fmt.Printf("Length: %v\n", len(ds.values))
-	fmt.Printf("Capacity: %v\n", cap(ds.values))
-	fmt.Printf("Values: %v\n", ds.values)
-}
-
-// Insert adds a value into the structure.
-func (ds *DataStructure) Insert(value float64) {
-	ds.values = append(ds.values, value)
-}
-
-// GetSize returns the amount of values appended into the structure.
-func (ds *DataStructure) GetSize() int {
-	return int(len(ds.values))
+// Sort reorganizes the values by sorting them in ascending order.
+func (ds *DataStructure) Sort() {
+	sort.Float64s(ds.values)
 }
 
 /*
