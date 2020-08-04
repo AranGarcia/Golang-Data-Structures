@@ -31,6 +31,12 @@ func (ds *DataStructure) Init(capacity uint) {
 	ds.values = make([]float64, 0, capacity)
 }
 
+// InitWithValues initializes the data structure with an existing slice of values.
+func (ds *DataStructure) InitWithValues(values []float64) {
+	ds.values = make([]float64, len(values))
+	copy(ds.values, values)
+}
+
 // PrintValues ...
 func (ds DataStructure) PrintValues() {
 	var comma string
