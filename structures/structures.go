@@ -26,6 +26,12 @@ type Stack struct {
 	DataStructure
 }
 
+// Queue is the data structure that provides a first in, first out
+// (FIFO) data organization.
+type Queue struct {
+	DataStructure
+}
+
 // Init pre-allocates the memory used for the data structure
 func (ds *DataStructure) Init(capacity uint) {
 	ds.values = make([]float64, 0, capacity)
@@ -79,10 +85,35 @@ func (ds *DataStructure) GetSize() int {
  * Stack methods
  */
 
+// Peek returns the next value to be returned without removing it
+// from the stack (that is, the most recent value inserted).
+func (s *Stack) Peek() float64 {
+	var last int = len(s.values) - 1
+	return s.values[last]
+}
+
 // Pop returns and removes the last value introduced into stack.
 func (s *Stack) Pop() float64 {
 	var last int = len(s.values) - 1
 	var value float64 = s.values[last]
 	s.values = s.values[:last]
+	return value
+}
+
+/*
+ * Queue methods
+ */
+
+// Peek returns the next value to be returned without removing it
+// from the queue (that is, the first value inserted).
+func (q *Queue) Peek() float64 {
+	return q.values[0]
+}
+
+// Pop implementation of the queue returns the first item that was
+// introduced in the queue.
+func (q *Queue) Pop() float64 {
+	var value float64 = q.values[0]
+	q.values = q.values[1:]
 	return value
 }
