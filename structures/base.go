@@ -112,6 +112,21 @@ func (ds DataStructure) Size() int {
 	return ds.size
 }
 
+// Slice converts the data structure into a slice
+func (ds DataStructure) Slice() []float64 {
+	var values []float64 = make([]float64, ds.size)
+
+	var index int = 0
+	var aux *Node = ds.first
+	for aux != nil {
+		values[index] = aux.value
+		aux = aux.next
+		index++
+	}
+
+	return values
+}
+
 // Sort reorganizes the values by sorting them in ascending order.
 func (ds *DataStructure) Sort() {
 	fmt.Println("Not yet implemented.")
