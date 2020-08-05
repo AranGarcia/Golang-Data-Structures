@@ -14,6 +14,6 @@ func (s *Stack) Peek() float64 {
 func (s *Stack) Pop() float64 {
 	var value float64 = s.last.value
 	s.last = s.last.previous
-
+	s.size--
 	return value
 }

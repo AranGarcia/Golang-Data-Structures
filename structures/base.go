@@ -72,15 +72,21 @@ func (ds *DataStructure) InitWithValues(values []float64) {
 }
 
 // Insert adds a value into the structure.
-func (ds *DataStructure) Insert(value float64) {
-	//ds.values = append(ds.values, value)
-	var aux *Node = ds.last
-	ds.last = &Node{
-		value:    value,
-		previous: aux,
+func (ds *DataStructure) Insert(newValue float64) {
+	var aux *Node = &Node{
+		value:    newValue,
+		previous: ds.last,
 		next:     nil,
 	}
 
+	if ds.last != nil {
+		// Re-arrange existing nodes
+		ds.last.next = aux
+	} else {
+		// stack is empty
+		ds.first = aux
+	}
+	ds.last = aux
 	ds.size++
 }
 
