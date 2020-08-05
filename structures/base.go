@@ -1,13 +1,15 @@
-/*
-Package structures provides implementations of basic data structures.
-- Stack: First in, last out
-*/
 package structures
 
 import (
 	"fmt"
 	"sort"
 )
+
+/*
+ * Use pointer receivers when a method needs to:
+ * - Modify fields of a struct.
+ * - When implementing polymorphism based on an interface type.
+ */
 
 // DataStructure is the base type for structures that will need to implement
 // how the data is organized and accesed.
@@ -86,47 +88,4 @@ func (ds DataStructure) PrintValues() {
 // Sort reorganizes the values by sorting them in ascending order.
 func (ds *DataStructure) Sort() {
 	sort.Float64s(ds.values)
-}
-
-/*
- * Use pointer receivers when a method needs to:
- * - Modify fields of a struct.
- * - When implementing polymorphism based on an interface type.
- */
-
-/*
- * Stack methods
- */
-
-// Peek returns the next value to be returned without removing it
-// from the stack (that is, the most recent value inserted).
-func (s *Stack) Peek() float64 {
-	var last int = len(s.values) - 1
-	return s.values[last]
-}
-
-// Pop returns and removes the last value introduced into stack.
-func (s *Stack) Pop() float64 {
-	var last int = len(s.values) - 1
-	var value float64 = s.values[last]
-	s.values = s.values[:last]
-	return value
-}
-
-/*
- * Queue methods
- */
-
-// Peek returns the next value to be returned without removing it
-// from the queue (that is, the first value inserted).
-func (q *Queue) Peek() float64 {
-	return q.values[0]
-}
-
-// Pop implementation of the queue returns the first item that was
-// introduced in the queue.
-func (q *Queue) Pop() float64 {
-	var value float64 = q.values[0]
-	q.values = q.values[1:]
-	return value
 }
