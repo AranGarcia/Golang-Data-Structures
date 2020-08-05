@@ -2,21 +2,21 @@ package structures
 
 import "testing"
 
-func TestStackWithValues(t *testing.T) {
+func TestQueueWithValues(t *testing.T) {
 	var initialValues []float64 = []float64{1, 1, 2, 3, 5, 8, 13}
-	var stack Stack = Stack{}
+	var queue Queue = Queue{}
 
-	stack.InitWithValues(initialValues)
+	queue.InitWithValues(initialValues)
 
-	if stack.Size() != len(initialValues) {
-		t.Errorf("stack.InitWithValues failed: expected %v values but got %v\n", len(initialValues), stack.Size())
+	if queue.Size() != len(initialValues) {
+		t.Errorf("stack.InitWithValues failed: expected %v values but got %v\n", len(initialValues), queue.Size())
 	} else {
-		t.Logf("stack.InitWithValues succesfully initialized with %v values.\n", stack.Size())
+		t.Logf("stack.InitWithValues succesfully initialized with %v values.\n", queue.Size())
 	}
 }
 
-func TestStackPeekAndPop(t *testing.T) {
-	stack := &Stack{}
+func TestQueuePeekAndPop(t *testing.T) {
+	stack := &Queue{}
 
 	stack.Insert(2)
 	stack.Insert(4)
@@ -24,24 +24,24 @@ func TestStackPeekAndPop(t *testing.T) {
 	stack.Insert(8)
 	stack.Insert(10)
 
-	if stack.Peek() != 10 {
+	if stack.Peek() != 2 {
 		t.Errorf("stack.Peek failed: expected 10 but got %v\n", stack.Peek())
 	}
 
-	stack.Pop()              // Removes 10
-	stack.Pop()              // Removes 8
+	stack.Pop()              // Removes 2
+	stack.Pop()              // Removes 4
 	lastValue := stack.Pop() // Removes 6
 
 	if lastValue != 6 {
 		t.Errorf("stack.Peek failed: expected 6 but got %v\n", lastValue)
 	}
 
-	if stack.Peek() != 4 {
+	if stack.Peek() != 8 {
 		t.Errorf("stack.Peek failed: expected 4 but got %v\n", stack.Peek())
 	}
 
-	stack.Pop() // Removes 4
-	stack.Pop() //Removes 2
+	stack.Pop() // Removes 8
+	stack.Pop() // Removes 10
 
 	// Test empty stack
 	if stack.Size() != 0 {
@@ -49,8 +49,8 @@ func TestStackPeekAndPop(t *testing.T) {
 	}
 }
 
-func TestStackSlice(t *testing.T) {
-	var stack *Stack = new(Stack)
+func TestQueueSlice(t *testing.T) {
+	var stack *Queue = new(Queue)
 
 	var values []float64 = []float64{10, 2, 7, 3.1416, -8}
 

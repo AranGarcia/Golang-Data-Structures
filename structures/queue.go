@@ -1,7 +1,3 @@
-/*
-Package structures provides implementations of basic data structures.
-- Stack: First in, last out
-*/
 package structures
 
 /*
@@ -19,6 +15,6 @@ func (q *Queue) Peek() float64 {
 func (q *Queue) Pop() float64 {
 	var value float64 = q.first.value
 	q.first = q.first.next
-
+	q.size--
 	return value
 }
