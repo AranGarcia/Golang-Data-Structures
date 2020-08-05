@@ -7,14 +7,13 @@ package structures
 // Peek returns the next value to be returned without removing it
 // from the stack (that is, the most recent value inserted).
 func (s *Stack) Peek() float64 {
-	var last int = len(s.values) - 1
-	return s.values[last]
+	return s.last.value
 }
 
 // Pop returns and removes the last value introduced into stack.
 func (s *Stack) Pop() float64 {
-	var last int = len(s.values) - 1
-	var value float64 = s.values[last]
-	s.values = s.values[:last]
+	var value float64 = s.last.value
+	s.last = s.last.previous
+
 	return value
 }
