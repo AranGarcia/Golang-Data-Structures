@@ -138,8 +138,3 @@ func (ds DataStructure) Slice() []float64 {
 
 	return values
 }
-
-// Sort reorganizes the values by sorting them in ascending order.
-func (ds *DataStructure) Sort() {
-	fmt.Println("Not yet implemented.")
-}
