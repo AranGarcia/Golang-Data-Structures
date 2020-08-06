@@ -32,12 +32,6 @@ type Stack struct {
 	DataStructure
 }
 
-// Queue is the data structure that provides a first in, first out
-// (FIFO) data organization.
-type Queue struct {
-	DataStructure
-}
-
 /*
  * DataStructure methods
  */
