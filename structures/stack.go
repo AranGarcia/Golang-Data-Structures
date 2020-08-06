@@ -1,5 +1,11 @@
 package structures
 
+// Stack is the data structure that provides a last in, first out
+// (LIFO) data organization.
+type Stack struct {
+	DataStructure
+}
+
 /*
  * Stack methods
  */

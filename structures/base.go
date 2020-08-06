@@ -26,15 +26,27 @@ type DataStructure struct {
 	last  *Node
 }
 
-// Stack is the data structure that provides a last in, first out
-// (LIFO) data organization.
-type Stack struct {
-	DataStructure
+// DataAccesor provides basic interface to shared methods among data structures.
+type DataAccesor interface {
+	Clear()
+	InitWithValues([]float64)
+	Insert(float64)
+	PrintInfo()
+	PrintValues()
+	Size() int
+	Slice() []float64
 }
 
 /*
  * DataStructure methods
  */
+
+// Clear deletes all nodes in the datastructure.
+func (ds *DataStructure) Clear() {
+	ds.size = 0
+	ds.first = nil
+	ds.last = nil
+}
 
 // InitWithValues initializes the data structure with an existing slice of values.
 func (ds *DataStructure) InitWithValues(values []float64) {

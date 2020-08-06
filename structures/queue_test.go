@@ -2,19 +2,6 @@ package structures
 
 import "testing"
 
-func TestQueueWithValues(t *testing.T) {
-	var initialValues []float64 = []float64{1, 1, 2, 3, 5, 8, 13}
-	var queue Queue = Queue{}
-
-	queue.InitWithValues(initialValues)
-
-	if queue.Size() != len(initialValues) {
-		t.Errorf("stack.InitWithValues failed: expected %v values but got %v\n", len(initialValues), queue.Size())
-	} else {
-		t.Logf("stack.InitWithValues succesfully initialized with %v values.\n", queue.Size())
-	}
-}
-
 func TestQueuePeekAndPop(t *testing.T) {
 	stack := &Queue{}
 
@@ -47,24 +34,4 @@ func TestQueuePeekAndPop(t *testing.T) {
 	if stack.Size() != 0 {
 		t.Errorf("stack.Size: expected to be empty but got size %v instead", stack.Size())
 	}
-}
-
-func TestQueueSlice(t *testing.T) {
-	var stack *Queue = new(Queue)
-
-	var values []float64 = []float64{10, 2, 7, 3.1416, -8}
-
-	for _, val := range values {
-		stack.Insert(val)
-	}
-
-	// Compare the slice output from the stack
-	var stackSlice []float64 = stack.Slice()
-	for i, stackValue := range stackSlice {
-		if values[i] != stackValue {
-			t.Errorf("stack.Slice failed: found difference at index %v.\n", i)
-			return
-		}
-	}
-	t.Logf("stack.Sice succesfully created slice: %v: \n", stackSlice)
 }
